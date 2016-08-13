@@ -54,6 +54,7 @@ AudioFace.music.AudioM.prototype = {
             _self.Audio.addEventListener('canplaythrough',function(){
                  $('.xmpartist').html(singer);  
                   $('.xmpname').html( songN);
+                  $(element2).addClass(element1);
             });
              _self.Audio.addEventListener('error',function(){
                   this.Ftext = "加载失败"; 
@@ -66,7 +67,7 @@ AudioFace.music.AudioM.prototype = {
         _self.Audio.play();
        
         $('.xmpartist').html(singer);
-        $(element2).addClass(element1);
+       
 
       
      })
