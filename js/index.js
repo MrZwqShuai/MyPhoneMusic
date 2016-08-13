@@ -35,6 +35,7 @@ AudioFace.music.AudioM.prototype = {
     init: function() {
   
         this.Audio = document.querySelector('#myAudio');
+
      
    
     },
@@ -43,14 +44,28 @@ AudioFace.music.AudioM.prototype = {
      
           var _self = this;
           
-           $(element).click(function(){
+           $(element).on('click',function(){
+          
+            _self.Audio.addEventListener('loadstart',function(){
+                  this.Loadtext = "正在加载";
+                   $('.xmpartist').html(this.Loadtext);
+            },false);
+           
+            _self.Audio.addEventListener('canplaythrough',function(){
+                 $('.xmpartist').html(singer);  
+                  $('.xmpname').html( songN);
+            });
+             _self.Audio.addEventListener('error',function(){
+                  this.Ftext = "加载失败"; 
+                  $('.xmpname').html( this.Ftext);
+            },false);
             var songN = $(this).attr('name');
             var singer = $(this).attr('singer')
     var path = $(this).attr('path');
         _self.Audio.src = path;
         _self.Audio.play();
-        $('.xmpname').html(songN);
-        $('.xmpartist').html(singer)
+       
+        $('.xmpartist').html(singer);
         $(element2).addClass(element1);
 
       
@@ -70,7 +85,7 @@ AudioFace.music.AudioM.prototype = {
         })
     },
     audioProcess:function(){
-         //   this.Audio.oncanplaythrough = function(){
+           this.Audio.oncanplaythrough = function(){
          //   var m = parseInt(this.duration/60);
          //   var s = parseInt(this.duration%60);
          //   m = m < 10 ? '0' + m : m;
@@ -84,8 +99,8 @@ AudioFace.music.AudioM.prototype = {
          //    S = S < 10 ? '0' + S : S;
             
          //    document.getElementById('TotalTimer').innerHTML = (M+':'+S)
-          
-         // }
+         
+         }
     },
 
      audioNext:function(element){
