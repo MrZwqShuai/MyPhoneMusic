@@ -26,6 +26,7 @@ AudioFace.music.AudioM = function(Songname,URL,element,element1,element2) {
     this.audioControl(element);
     this.audioPlay(element);
     this.audioProcess();
+    this.audioloadData();
     console.log(this);
 };
 
@@ -35,17 +36,18 @@ AudioFace.music.AudioM.prototype = {
     init: function() {
   
         this.Audio = document.querySelector('#myAudio');
+        // 当前播放索引
+        this.currentIndex = -1;
 
-     
    
     },
-
+    // 监听播放
     audioPlay:function(element,element1,element2){
-     
+      
           var _self = this;
           
            $(element).on('click',function(){
-          
+       
             _self.Audio.addEventListener('loadstart',function(){
                   this.Loadtext = "正在加载";
                    $('.xmpartist').html(this.Loadtext);
@@ -60,19 +62,20 @@ AudioFace.music.AudioM.prototype = {
                   this.Ftext = "加载失败"; 
                   $('.xmpname').html( this.Ftext);
             },false);
-            var songN = $(this).attr('name');
-            var singer = $(this).attr('singer')
-    var path = $(this).attr('path');
-        _self.Audio.src = path;
+            
+           _self.currentIndex = Number($(this).children('.Num').text())-1;
+      
+        _self.Audio.src = _self.arr[ _self.currentIndex];
         _self.Audio.play();
-       
+       var songN = $(this).attr('name');
+            var singer = $(this).attr('singer');
         $('.xmpartist').html(singer);
-       
+        
 
       
      })
     },
-
+    // 播放暂停
     audioControl: function(element,element1) {
         var _self = this;
         $(element).on('click',function(){
@@ -81,7 +84,8 @@ AudioFace.music.AudioM.prototype = {
             _self.Audio.pause();
             }else{
               $(this).addClass(element1);
-                _self.Audio.play()
+
+                _self.Audio.play();
             }
         })
     },
@@ -103,9 +107,100 @@ AudioFace.music.AudioM.prototype = {
          
          }
     },
+    // 切换下一首
+     audioNext:function(element,element1,element2,element3){
+        var _self = this;
+        $(element).on('click',function(){ 
+          
+            if(_self.currentIndex==28){
+                _self.currentIndex=0;
+                
+                
+            }else{
+                 _self.currentIndex++ ; 
+          
+            }
+           
+           
+          
+          _self.Audio.src = _self.arr[_self.currentIndex];
+            _self.Audio.play();
+            _self.Audio.addEventListener('canplaythrough',function(){
+                var singer = _self.arr2[_self.currentIndex];
+                var songN = _self.arr1[_self.currentIndex];
+                 $('.xmpartist').html(singer);  
+                  $('.xmpname').html( songN);
+                  $(element2).addClass(element3);
+                   });
+             
+             
+           
 
-     audioNext:function(element){
+            var singer = $(element1).attr('singer')
+            
+        })
+    },
+    // 获取json数据
+    audioloadData:function(element){
+         var _self = this;
+        var arr = new Array();
+        var arr1 = new Array();
+        var arr2 = new Array();
+         var num = 0,
+      $list = $('.container');
+        loadData($list,num);
+        function loadData($ele,num){
+        $.ajax({
+        url:'json/music.json',
+         async:false,
+        success:function(data){
+            
+
+                
+            var str = '';
         
+            var index = 0;
+            $.each(data,function(i,item){
+
+                
+                arr[index] = item.songSrc;
+                arr1[index] = item.songName;
+                arr2[index] = item.Singer;
+                index = index+1;
+
+
+                if(i==0){
+                    str+=[
+                    '<li class="musiclist" id="#musiclist" singer='+item.Singer+' path="'+item.songSrc+'" name="'+item.songName+'">'+'<span>'+("0"+(i+1))+'</span>'+'<div>'+item.songName+'<br>'+item.Singer+'</div></li>'
+                ].join('');
+            }
+                else if(i<10){
+                     str+=[
+                    '<li class="musiclist" id="#musiclist" singer='+item.Singer+' path="'+item.songSrc+'" name="'+item.songName+'">'+'<span>'+("0"+(i+1))+'</span>'+'<div>'+item.songName+'<br>'+item.Singer+'</div> </li>'
+                ].join('');
+                }
+            
+            else{
+                str+=[
+                    '<li class="musiclist" id="#musiclist" singer='+item.Singer+' path="'+item.songSrc+'" name="'+item.songName+'">'+'<span>'+(i+1)+'</span>'+'<div>'+item.songName+'<br>'+item.Singer+'</div></li>'
+                ].join('');
+            }
+
+            })
+            
+            $list.append(str);
+            _self.arr = arr;
+            _self.arr1 = arr1;
+            _self.arr2= arr2;
+         
+          
+        },
+        error:function(){
+            alert('请求失败')
+        }
+
+    })
+   }
     }
 
 }
