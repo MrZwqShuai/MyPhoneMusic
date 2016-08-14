@@ -46,7 +46,7 @@ AudioFace.music.AudioM.prototype = {
       
           var _self = this;
           
-           $(element).on('click',function(){
+           $(element).on('tap',function(){
        
             _self.Audio.addEventListener('loadstart',function(){
                   this.Loadtext = "正在加载";
@@ -78,7 +78,7 @@ AudioFace.music.AudioM.prototype = {
     // 播放暂停
     audioControl: function(element,element1) {
         var _self = this;
-        $(element).on('click',function(){
+        $(element).on('tap',function(){
             if(!_self.Audio.paused){
               $(this).removeClass(element1);
             _self.Audio.pause();
@@ -110,7 +110,7 @@ AudioFace.music.AudioM.prototype = {
     // 切换下一首
      audioNext:function(element,element1,element2,element3){
         var _self = this;
-        $(element).on('click',function(){ 
+        $(element).on('tap',function(){ 
           
             if(_self.currentIndex==28){
                 _self.currentIndex=0;
