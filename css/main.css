@@ -238,11 +238,11 @@ img {
     list-style: none;
 }
 .container li {
-       width: 100%;
+           width: 100%;
     float: left;
-    color:rgba(255, 255, 255, 0.77);
+    color: rgba(255, 255, 255, 0.77);
     font-size: 1rem;
-    height: 2.8rem;
+    height: 4.1rem;
     background: rgba(0, 0, 0, 0.33);
     box-sizing: border-box;
     border-bottom: 1px solid #9E9E9E;
@@ -328,5 +328,5 @@ img {
     position: absolute;
 }
 .SongN{
-	    padding: 0 3rem;
+	    padding: .3rem 3rem;
 }
