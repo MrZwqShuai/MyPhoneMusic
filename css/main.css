@@ -274,10 +274,10 @@ img {
 }
 
 .ft-rigth {
-    position: absolute;
-    width: 6.5rem;
+      position: absolute;
+    width: 8.1rem;
     margin-left: 1%;
-    margin-top: 1.3rem;
+    margin-top: 1rem;
     right: 1rem;
 }
 
@@ -311,9 +311,9 @@ img {
 }
 
 .icon-tongyong {
-    display: block;
-    width: 1.5rem;
-    height: 1.5rem;
+      display: block;
+    width: 2rem;
+    height: 2rem;
     background-size: 100%;
     background-repeat: no-repeat;
     float: left;
