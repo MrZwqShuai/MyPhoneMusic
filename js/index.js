@@ -151,7 +151,7 @@ AudioFace.music.AudioM.prototype = {
         loadData($list,num);
         function loadData($ele,num){
         $.ajax({
-        url:'son/music.json',
+        url:'json/music.json',
          async:false,
         success:function(data){
             
