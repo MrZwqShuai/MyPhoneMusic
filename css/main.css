@@ -353,7 +353,9 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    transform: translate3d(0px,100%,0px);
+    -webkit-transform: translate3d(0px,100%,0px);
+    -moz-transform: translate3d(0px,100%,0px);
+    -o-transform: translate3d(0px,100%,0px);
     height: 100%;
     overflow: hidden;
     background-image: url(../images/2.jpeg);
@@ -363,10 +365,14 @@ img {
 }
 @-webkit-keyframes moveup {
     0%{
-            transform: translate3d(0px,100%,0px);
+            -webkit-transform: translate3d(0px,100%,0px);
+            -moz-transform: translate3d(0px,100%,0px);
+            -o-transform: translate3d(0px,100%,0px);
     }
     100%{
-            transform: translate3d(0px,0%,0px);
+            -webkit-transform: translate3d(0px,0%,0px);
+             -moz-transform: translate3d(0px,0%,0px);
+            -o-transform: translate3d(0px,0%,0px);
     }
 }
 .T-content-one{
