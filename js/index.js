@@ -36,10 +36,17 @@ AudioFace.music.AudioM.prototype = {
     init: function() {
   
         this.Audio = document.querySelector('#myAudio');
+        this.Audio.loop=true;
         // 当前播放索引
         this.currentIndex = -1;
 
    
+    },
+    animate: function(element,element1){
+      $(element).on('tap',function(){
+        $(element1).css({'animation':'moveup 1.2s alternate forwards'})
+      })
+      
     },
     // 监听播放
     audioPlay:function(element,element1,element2){
