@@ -2,20 +2,23 @@ html,
 body {
     width: 100%;
     height: 100%;
-    /*overflow*/: hidden;
+    overflow
+    : hidden;
     color: #555;
     font: 14px/1.5 "hiragino sans gb", arial;
     background: #f4f4f4;
-     -webkit-tap-highlight-color:rgba(0,0,0,0); 
-
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+
 /*去除微信蓝色边框*/
+
 a:focus,
 input:focus,
 p:focus,
-div:focus{
--webkit-tap-highlight-color:rgba(0,0,0,0);
--webkit-user-modify:read-write-plaintext-only; 
+div:focus {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-modify: read-write-plaintext-only;
 }
 
 ul li {
@@ -63,7 +66,8 @@ img {
 
 .wrap {
     width: 100%;
-    /*overflow*/: hidden;
+    /*overflow*/
+    : hidden;
 }
 
 .homepage {
@@ -237,18 +241,19 @@ img {
     position: absolute;
     width: 100%;
     height: 100%;
-   
 }
-.container{
-         width: 100%;
+
+.container {
+    width: 100%;
     top: 0;
     position: absolute;
     bottom: 4.1rem;
     overflow-y: auto;
     list-style: none;
 }
+
 .container li {
-           width: 100%;
+    width: 100%;
     float: left;
     color: rgba(255, 255, 255, 0.77);
     font-size: 1rem;
@@ -259,7 +264,7 @@ img {
 }
 
 .footer-play {
-        position: fixed;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 4.1rem;
@@ -284,7 +289,7 @@ img {
 }
 
 .ft-rigth {
-      position: absolute;
+    position: absolute;
     width: 8.1rem;
     margin-left: 1%;
     margin-top: 1rem;
@@ -305,9 +310,9 @@ img {
 .icon-play {
     background: url(../images/play_play.png);
 }
-.icon-pause{
-   background: url(../images/play_pause.png);
- 
+
+.icon-pause {
+    background: url(../images/play_pause.png);
 }
 
 .icon-next {
@@ -321,7 +326,7 @@ img {
 }
 
 .icon-tongyong {
-      display: block;
+    display: block;
     width: 2rem;
     height: 2rem;
     background-size: 100%;
@@ -329,14 +334,89 @@ img {
     float: left;
     cursor: pointer;
 }
-.Num{
-	       width: 3rem;
+
+.Num {
+    width: 3rem;
     height: 3rem;
     left: 0;
     text-align: center;
     line-height: 3rem;
     position: absolute;
 }
-.SongN{
-	    padding: .3rem 3rem;
+
+.SongN {
+    padding: .3rem 3rem;
 }
+.Contextpage-two{
+        position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translate3d(0px,100%,0px);
+    height: 100%;
+    background-image: url(../images/2.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+}
+@-webkit-keyframes moveup {
+    0%{
+            transform: translate3d(0px,100%,0px);
+    }
+    100%{
+            transform: translate3d(0px,0%,0px);
+    }
+}
+.T-content-one{
+        position: absolute;
+    opacity: 0.9;
+    top: 0;
+    color: rgba(255, 255, 255, 0.7);
+    left: 0;
+    width: 100%;
+}
+.T-content-two{
+      position: absolute;
+    opacity: 0.9;
+    top: 0;
+    color: rgba(255, 255, 255, 0.7);
+    left: 50%;
+    width: 100%;
+}
+
+
+
+
+           #iSlider-wrapper {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        #iSlider-wrapper ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #iSlider-wrapper li {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            list-style: none;
+        }
+
+        #iSlider-wrapper li img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        
