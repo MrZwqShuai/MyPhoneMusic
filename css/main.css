@@ -2,7 +2,7 @@ html,
 body {
     width: 100%;
     height: 100%;
-    overflow
+    /*overflow*/
     : hidden;
     color: #555;
     font: 14px/1.5 "hiragino sans gb", arial;
@@ -383,40 +383,3 @@ img {
     left: 50%;
     width: 100%;
 }
-
-
-
-
-           #iSlider-wrapper {
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            position: absolute;
-        }
-
-        #iSlider-wrapper ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        #iSlider-wrapper li {
-            position: absolute;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-pack: center;
-            -webkit-box-align: center;
-            list-style: none;
-        }
-
-        #iSlider-wrapper li img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-        
-        
