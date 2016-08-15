@@ -354,6 +354,7 @@ img {
     width: 100%;
     transform: translate3d(0px,100%,0px);
     height: 100%;
+    overflow: hidden;
     background-image: url(../images/2.jpeg);
     background-repeat: no-repeat;
     background-size: 100%;
