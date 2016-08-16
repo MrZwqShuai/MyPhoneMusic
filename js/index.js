@@ -123,8 +123,14 @@ AudioFace.music.AudioM.prototype = {
             $(element3).css({'right': '-2.2rem',
                   'animation':'rotate 4s .5s linear infinite',
                   '-webkit-animation':'rotate 4s .5s linear infinite',
-                    ' animation-delay':'1.8s',
-                   '-webkit-animation-delay':'1.8s'
+                  '-moz-animation':'rotate 4s .5s linear infinite',
+                  '-ms-animation':'rotate 4s .5s linear infinite',
+                  '-o-animation':'rotate 4s .5s linear infinite',
+                    '-o-animation-delay':'1.8s',
+                   '-moz-animation-delay':'1.8s',
+                   '-ms-animation-delay':'1.8s',
+                   '-webkit-animation-delay':'1.8s',
+                   'animation-delay':'1.8s'
               })
             }else{
                  $(element2).on('tap',function(){
