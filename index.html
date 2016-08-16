@@ -35,25 +35,46 @@
         <footer>
             <div class="footer-play">
                 <div class="ft-left">
-                    <img src="http://img.xiami.net/images/album/img35/135/21002167761444703497_1.jpg" alt="">
+                    <img src="images/img.jpg" alt="">
                 </div>
                 <div class="ft-middle">
                     <p class="name xmpname">请选择歌曲..</p>
                     <p class="artist xmpartist">未选择..</p>
                 </div>
-              
             </div>
-        </footer> 
-         <div class="ft-rigth">
-                    <i class="icon-play  icon-tongyong "></i>
-                    <i class="icon-next icon-tongyong"></i>
-                    <i class="ic-down icon-tongyong"></i>
-                </div>
+        </footer>
+        <div class="ft-rigth">
+            <i class="icon-play  icon-tongyong "></i>
+            <i class="icon-next icon-tongyong"></i>
+            <i class="ic-down icon-tongyong"></i>
+        </div>
         <audio id="myAudio"></audio>
     </div>
     <div class="Contextpage-two">
         <div class="T-content-one">
-            内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页
+           <div class="ft-middle m2">
+                    <span class="return-key">
+                    <img src="images/return.png" alt="">
+                    </span>
+                    <p class="name xmpname m1">请选择歌曲..</p>
+                    <p class="artist xmpartist m1">未选择..</p>
+                </div>
+                <div class="cover"><img src="images/cd185.png" alt="">
+                <div class="t-img">
+                               <img src="images/img.jpg" alt="">
+                           </div>
+                           <div class="b-img">
+                               <img src="images/_line.png" alt="">
+                           </div>
+                </div>
+                <div class="Contextpage-footer">
+                    <div class="Antft-rigth">
+           
+            <i class="bigicon-prev bigicon-tongyong"></i> 
+            <i class="bigicon-play bigicon-pause bigicon-tongyong "></i>
+            <i class="bigicon-next bigicon-tongyong"></i>
+        </div>
+                </div>
         </div>
         <div class="T-content-two">
             内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页内容页
@@ -68,9 +89,12 @@
 
 
     a.audioPlay('.musiclist', 'icon-pause', '.icon-play');
-    a.audioControl('.icon-play ', 'icon-pause');
+    a.audioControl('.icon-play ', 'icon-pause','.b-img');
     a.audioNext('.icon-next', '.musiclist', '.icon-play', 'icon-pause');
-    a.animate('.footer-play', '.Contextpage-two')
+    a.audioNext('.bigicon-next', '.musiclist', '.icon-play', 'icon-pause');
+    a.animate('.footer-play', '.Contextpage-two','.bigicon-play','.b-img','.return-key');
+    a.audioControl('.bigicon-play','bigicon-pause','.b-img');
+    a.audioPrev('.bigicon-prev', '.musiclist', '.icon-play', 'icon-pause');
     $('.musiclist span').addClass('Num');
     $('.musiclist div').addClass('SongN');
     </script>
