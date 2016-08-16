@@ -283,6 +283,7 @@ img {
     top: 0;
     left: 0;
     width: 100%;
+    transform: translate3d(0px, 100%, 0px);
     -webkit-transform: translate3d(0px, 100%, 0px);
     -moz-transform: translate3d(0px, 100%, 0px);
     -o-transform: translate3d(0px, 100%, 0px);
