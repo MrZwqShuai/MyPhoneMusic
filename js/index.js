@@ -25,7 +25,6 @@ AudioFace.music.AudioM = function(Songname,URL,element,element1,element2) {
     this.audioPlay();
     this.audioControl(element);
     this.audioPlay(element);
-    this.audioProcess();
     this.audioloadData();
     console.log(this);
 };
@@ -144,23 +143,55 @@ AudioFace.music.AudioM.prototype = {
             });
       
     },
-    audioProcess:function(){
-           this.Audio.oncanplaythrough = function(){
-         //   var m = parseInt(this.duration/60);
-         //   var s = parseInt(this.duration%60);
-         //   m = m < 10 ? '0' + m : m;
-         //   s = s < 10 ? '0' + s : s;
-         //   $('#TotalTimer').html(m+':'+s)
-         //    };
-         //  this.Audio.ontimeupdate = function(){
-         //    var M = parseInt(this.currentTime/60);
-         //    var S = parseInt(this.currentTime%60);
-         //    M = M < 10 ? '0' + M : M;
-         //    S = S < 10 ? '0' + S : S;
+    audioProcess:function(element,element1,element2,element3){
+            var _self = this
+           this.Audio.addEventListener('canplaythrough',function(){
+           var m = parseInt(_self.Audio.duration/60);
+           var s = parseInt(_self.Audio.duration%60);
+           m = m < 10 ? '0' + m : m;
+           s = s < 10 ? '0' + s : s;
+           console.log(m+':'+s)
+           $(element).html(m+':'+s)
+            });
+
+           this.Audio.addEventListener('timeupdate',function(){  
+              var M = parseInt(_self.Audio.currentTime/60);
+            var S = parseInt(_self.Audio.currentTime%60);
+            _self.MW = $('.progress-line').width()-$(this).width();
+            M = M < 10 ? '0' + M : M;
+            S = S < 10 ? '0' + S : S;
             
-         //    document.getElementById('TotalTimer').innerHTML = (M+':'+S)
+            $(element1).html(M+':'+S);
+            _self.p = parseInt(_self.Audio.currentTime/_self.Audio.duration*100)+'%';
          
-         }
+        
+            document.querySelector(element3).style.width = _self.p
+            document.querySelector(element2).style.marginLeft = _self.p
+
+           });
+           // 拖拽
+           $(element2).on('touchstart',function(e){
+            var touch = e.targetTouches[0];
+            var ev = e || windwo.event;
+            var x = touch.clientX;
+            var y = touch.clientY;
+            var l = touch.offsetLeft;
+            var t = touch.offsetTop;
+            $(element2).on('touchmove',function(e){
+            var ev = e.targetTouches[0];
+            var X = ev.clientX;
+            var chaX = X-x;
+            if(chaX<=0)chaX = 0;
+            _self.MW = $('.progress-line').width()-$(this).width();
+        
+            if(chaX>=_self.MW)chaX = _self.MW;
+            var per = (chaX/_self.MW)*100;
+             // document.querySelector(element3).style.width = _self.p+'%'
+             document.querySelector(element2).style.marginLeft = chaX+'px'
+            })
+            
+           })
+        
     },
     // 切换下一首
      audioNext:function(element,element1,element2,element3){
