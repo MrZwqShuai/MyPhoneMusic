@@ -28,6 +28,7 @@
         <nav> </nav>
         <section Wrap-content>
             <div class="M-container">
+            <!-- 歌曲列表 -->
                 <ul class="container">
                 </ul>
             </div>
@@ -67,9 +68,19 @@
                                <img src="images/line.png" alt="">
                            </div>
                 </div>
+                <!-- 进度条 -->
+                <div class="Progress-bar">
+                <span class='timeStart'>00:00</span>
+                   <span class="drop-point"></span>
+                	<div class="progress-line">
+                	<div class="progress-line-full"></div>
+                	</div>
+                	<span class='totaltime'>00:00</span>
+                </div>
+                <!-- 底部按钮 -->
                 <div class="Contextpage-footer">
                     <div class="Antft-rigth">
-           
+                  
             <i class="bigicon-prev bigicon-tongyong"></i> 
             <i class="bigicon-play bigicon-pause bigicon-tongyong "></i>
             <i class="bigicon-next bigicon-tongyong"></i>
@@ -95,6 +106,7 @@
     a.animate('.footer-play', '.Contextpage-two','.bigicon-play','.b-img','.return-key');
     a.audioControl('.bigicon-play','bigicon-pause','.b-img');
     a.audioPrev('.bigicon-prev', '.musiclist', '.icon-play', 'icon-pause');
+    a.audioProcess('.totaltime','.timeStart','.drop-point','.progress-line-full')
     $('.musiclist span').addClass('Num');
     $('.musiclist div').addClass('SongN');
     </script>
