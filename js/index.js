@@ -168,10 +168,10 @@ AudioFace.music.AudioM.prototype = {
                 _self.Audio.pause();
             });
              $(element2).on('touchend', function(e) {
-              $(element2).off('touchstart');
               _self.Audio.play();
-               
+                $(element2).off('touchstart');
              })
+
         })
 
 
@@ -199,6 +199,8 @@ AudioFace.music.AudioM.prototype = {
             document.querySelector(element2).style.left = per1*100+'%';
                 _self.Audio.currentTime = per1 * totaltimer;
         })
+
+
 
     },
     // 切换下一首
