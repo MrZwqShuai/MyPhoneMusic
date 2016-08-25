@@ -1,6 +1,5 @@
 'use strict'
-var AudioFace = {
-}
+var AudioFace = {}
 AudioFace.music = {
     // var currentIndex=-1;
     // //  播放器元素对象
@@ -23,6 +22,7 @@ AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.audioControl(element);
     this.audioPlay(element);
     this.audioloadData();
+    this.audioLrcParse();
     console.log(this);
 };
 AudioFace.music.AudioM.prototype = {
@@ -33,8 +33,18 @@ AudioFace.music.AudioM.prototype = {
         // 当前播放索引
         this.currentIndex = -1;
     },
+    playpause: function(element, element1) {
+        this.Audio.addEventListener('pause', function() {
+            console.log('暂停a ');
+            $(element).removeClass(element1);
+        });
+        this.Audio.addEventListener('playing', function() {
+            console.log('播放中');
+            $(element).addClass(element1);
+        });
+    },
     // 监听播放
-    audioPlay: function(element, element1, element2,element3,element4) {
+    audioPlay: function(element, element1, element2, element3, element4) {
         var _self = this;
         $(element).on('tap', function() {
             _self.Audio.addEventListener('loadstart', function() {
@@ -63,17 +73,8 @@ AudioFace.music.AudioM.prototype = {
     audioControl: function(element, element1, element3) {
         var _self = this;
         $(element).on('tap', function() {
-              _self.Audio.addEventListener('pause', function() {
-               console.log('暂停a ');
-               $(element).removeClass(element1);
-             });
-                _self.Audio.addEventListener('playing', function() {
-               console.log('播放中');
-               $(element).addClass(element1);
-             });
+            _self.playpause(element, element1);
             if (!_self.Audio.paused) {
-                
-               
                 _self.Audio.pause();
                 $(element3).css({
                     'right': '0rem',
@@ -81,8 +82,6 @@ AudioFace.music.AudioM.prototype = {
                     '-webkit-animation': 'none'
                 })
             } else {
-                
-                
                 _self.Audio.play();
                 $(element3).css({
                     'right': '-2.2rem',
@@ -93,10 +92,6 @@ AudioFace.music.AudioM.prototype = {
                 })
             }
         })
-          
-           
-
-
     },
     animate: function(element, element1, element2, element3, element4) {
         var _self = this;
@@ -107,12 +102,12 @@ AudioFace.music.AudioM.prototype = {
             })
         })
         $(element4).on('tap', function() {
-            $(element1).css({
-                'transform': 'translate3D(0,100%,0)',
-                '-webkit-transform': 'translate3d(0,100%,0)'
+                $(element1).css({
+                    'transform': 'translate3D(0,100%,0)',
+                    '-webkit-transform': 'translate3d(0,100%,0)'
+                })
             })
-        })
-        // 监听icon-play事件
+            // 监听icon-play事件
         this.Audio.addEventListener('canplaythrough', function() {
             if (!_self.Audio.paused) {
                 $(element3).css({
@@ -135,6 +130,7 @@ AudioFace.music.AudioM.prototype = {
             }
         });
     },
+    // 播放进度
     audioProcess: function(element, element1, element2, element3) {
         var _self = this;
         var totaltimer = 0;
@@ -145,38 +141,34 @@ AudioFace.music.AudioM.prototype = {
             m = m < 10 ? '0' + m : m;
             s = s < 10 ? '0' + s : s;
             $(element).html(m + ':' + s);
-              $(element2).on('touchstart', function(e) {
-            var touch = e.targetTouches[0];
-            var ev = e || windwo.event;
-            var x = touch.clientX;
-            var y = touch.clientY;
-            var l = touch.offsetLeft;
-            var t = touch.offsetTop;
-            _self.Audio.pause();
-            $(element2).on('touchmove', function(e) {
-                var ev = e.targetTouches[0];
-                var X = ev.clientX;
-                var chaX = X - x;
-                if (chaX <= 0)chaX = 0;
-                _self.MW = $('.progress-line').width() - $(this).width();
-                if (chaX >= _self.MW)chaX = _self.MW;
-                var per = chaX / _self.MW;
-                document.querySelector(element3).style.width = chaX * 100 + 'px';
-                document.querySelector(element2).style.left = chaX + 'px';
-                // document.querySelector(element2).style.left = _self.p;
-                _self.Audio.currentTime = per * totaltimer;
+            $(element2).on('touchstart', function(e) {
+                var touch = e.targetTouches[0];
+                var ev = e || windwo.event;
+                var x = touch.clientX;
+                var y = touch.clientY;
+                var l = touch.offsetLeft;
+                var t = touch.offsetTop;
                 _self.Audio.pause();
-            });
-             $(element2).on('touchend', function(e) {
-              _self.Audio.play();
-                $(element2).off('touchstart');
-             })
-
-        })
-
-
-        })
-              ;
+                $(element2).on('touchmove', function(e) {
+                    var ev = e.targetTouches[0];
+                    var X = ev.clientX;
+                    var chaX = X - x;
+                    if (chaX <= 0) chaX = 0;
+                    _self.MW = $('.progress-line').width() - $(this).width();
+                    if (chaX >= _self.MW) chaX = _self.MW;
+                    var per = chaX / _self.MW;
+                    _self.Audio.pause();
+                    document.querySelector(element3).style.width = chaX + 'px';
+                    document.querySelector(element2).style.left = chaX + 'px';
+                    // document.querySelector(element2).style.left = _self.p;
+                    _self.Audio.currentTime = per * totaltimer;
+                });
+                $(element2).on('touchend', function(e) {
+                    $(element2).off('touchstart');
+                    _self.Audio.play();
+                })
+            })
+        });
         this.Audio.addEventListener('timeupdate', function() {
             var M = parseInt(_self.Audio.currentTime / 60);
             var S = parseInt(_self.Audio.currentTime % 60);
@@ -187,21 +179,21 @@ AudioFace.music.AudioM.prototype = {
             _self.p = parseInt(_self.Audio.currentTime / _self.Audio.duration * 100) + '%';
             document.querySelector(element3).style.width = _self.p;
             document.querySelector(element2).style.left = _self.p;
-            
-         });
+        });
         // 拖拽
-         $('.real-line').on('touchstart',function(e){
-             var e = e.targetTouches[0];
-             var xx = e.clientX;
-             var nxx = xx-this.parentElement.offsetLeft;
-             var per1 = nxx/this.parentElement.offsetWidth;
-              document.querySelector(element3).style.width = per1*100+'%';
-            document.querySelector(element2).style.left = per1*100+'%';
-                _self.Audio.currentTime = per1 * totaltimer;
+        $('.real-line').on('touchstart', function(e) {
+            var e = e.targetTouches[0];
+            var xx = e.clientX;
+            var nxx = xx - this.parentElement.offsetLeft;
+            var per1 = nxx / this.parentElement.offsetWidth;
+            document.querySelector(element3).style.width = per1 * 100 + '%';
+            document.querySelector(element2).style.left = per1 * 100 + '%';
+            _self.Audio.currentTime = per1 * totaltimer;
+            _self.Audio.play();
         })
-
-
-
+        $('.real-line').on('touchstart', function(e) {
+            $(element2).off('touchstart');
+        })
     },
     // 切换下一首
     audioNext: function(element, element1, element2, element3) {
@@ -245,12 +237,66 @@ AudioFace.music.AudioM.prototype = {
             var singer = $(element1).attr('singer')
         })
     },
+    audioLrcParse: function() {
+        var _self = this
+        var songlrc = this.arr3[0];
+        // console.log(songlrc)
+        var Lyrics = /([\d{2}:\d{2}\.\d{2}]+)([^\[]+)/g;
+        var arrTime = [];
+        var arrLrc = [];
+        while (Lyrics.exec(songlrc)) {
+            var aa = RegExp.$1.split(':');
+            var minute = parseInt(aa[0]); //分钟
+            var second = parseInt(aa[1]);
+            var totaltime = minute * 60 + second;
+            arrTime.push(totaltime);
+            var aa = RegExp.$2.replace(/[\[\]]/g, '');
+            arrLrc.push(aa);
+        }
+        arrLrc.push(aa);
+        console.log(arrLrc);
+        for (var i = 0; i < arrLrc.length; i++) {
+            var lrcLi = '<li>' + arrLrc[i] + '</li>';
+            $('.lrcCon').append(lrcLi);
+        }
+        // function MakeTime(){
+        //         arrTime.map(function(list,index){
+        //             var arr         = list.split(':'),
+        //                 minute      = parseInt(arr[0]),//分钟
+        //                 second      = parseInt(arr[1]),
+        //                 millisecond = parseInt(parseFloat(arr[1])%1*100);
+        //                 arrTime[index] =minute * 60 + second; 
+        //                 console.log(arrLrc[index])
+        //         });
+        //     }
+        //     MakeTime();
+        // return [arrTime,arrLrc];
+       
+             _self.Audio.addEventListener('timeupdate', function() {
+            var nowTime = parseInt(this.currentTime);
+            for (var i in arrTime) {
+                var index = 0 ;
+                if (arrTime[i] == nowTime) {
+                    index++;
+                    var Height = $('.lrcContainer').height();
+                    var height = $('.lrcCon li').eq(i).height();
+                    console.log(height*i)
+                    $('.lrcCon').find('li').eq(i).addClass('m3').siblings().removeClass('m3') ;
+                    $('.lrcCon').css('marginTop',''+( Height / 2 - i * height )+'px') ;
+                    console.log(index)
+                }
+            }
+        })
+      
+       
+    },
     // 获取json数据
     audioloadData: function(element) {
         var _self = this;
         var arr = new Array();
         var arr1 = new Array();
         var arr2 = new Array();
+        var arr3 = new Array();
         var num = 0,
             $list = $('.container');
         loadData($list, num);
@@ -265,6 +311,7 @@ AudioFace.music.AudioM.prototype = {
                         arr[index] = item.songSrc;
                         arr1[index] = item.songName;
                         arr2[index] = item.Singer;
+                        arr3[index] = item.songlrc;
                         index = index + 1;
                         if (i == 0) {
                             str += [
@@ -284,6 +331,7 @@ AudioFace.music.AudioM.prototype = {
                     _self.arr = arr;
                     _self.arr1 = arr1;
                     _self.arr2 = arr2;
+                    _self.arr3 = arr3;
                 },
                 error: function() {
                     alert('请求失败')
