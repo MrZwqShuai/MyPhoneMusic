@@ -258,7 +258,8 @@ AudioFace.music.AudioM.prototype = {
             var lrcLi = '<li>' + arrLrc[i] + '</li>';
             $(element1).append(lrcLi);
         }
-        _self.Audio.addEventListener('timeupdate', function() {
+        setInterval(function(){
+                  _self.Audio.addEventListener('timeupdate', function() {
             var nowTime = parseInt(this.currentTime);
             for (var i in arrTime) {
                 var index = 0;
@@ -270,7 +271,9 @@ AudioFace.music.AudioM.prototype = {
                     $(element1).css('marginTop', '' + (Height / 2 - i * height) + 'px');
                 }
             }
-        })
+        }) 
+              },50);
+ 
     },
     // 获取json数据
     audioloadData: function() {
