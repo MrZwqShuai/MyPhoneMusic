@@ -60,7 +60,7 @@
             </div>
             <div class="cover"><img src="images/cd185.png" alt="">
                 <div class="t-img">
-                    <img src="images/u=1831456477,4222977929&fm=21&gp=0.jpg" alt="">
+                    <img src="http://img2.imgtn.bdimg.com/it/u=1831456477,4222977929&fm=21&gp=0.jpg" alt="">
                 </div>
                 <div class="b-img">
                     <img src="images/line.png" alt="">
@@ -100,15 +100,16 @@
     <script type="text/javascript" src="js/Index1.js"></script>
     <script type="text/javascript" charset="utf-8" async defer>
     var a = new AudioFace.music.AudioM();
+    a.audioProcess('.totaltime', '.timeStart', '.drop-point', '.progress-line-full');
+    a.audioLrcParse('.lrcCon','.lrcContainer','.lrcCon li') ;
     a.audioNext('.icon-next', '.musiclist', '.icon-play', 'icon-pause');
     a.audioNext('.bigicon-next', '.musiclist', '.bigicon-play', 'bigicon-pause');
     a.animate('.footer-play', '.Contextpage-two', '.bigicon-play', '.b-img', '.return-key');
     a.audioControl('.bigicon-play', 'bigicon-pause', '.b-img');
     a.audioPrev('.bigicon-prev', '.musiclist', '.icon-play', 'icon-pause');
-    a.audioProcess('.totaltime', '.timeStart', '.drop-point', '.progress-line-full');
     a.audioPlay('.musiclist', 'icon-pause', '.icon-play', '.bigicon-play', 'bigicon-pause');
     a.audioControl('.icon-play ', 'icon-pause', '.b-img');
-    a.playpause('.icon-play ', 'icon-pause')
+    a.playpause('.icon-play ', 'icon-pause');
     $('.musiclist span').addClass('Num');
     $('.musiclist div').addClass('SongN');
     </script>
