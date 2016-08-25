@@ -28,7 +28,7 @@
         <nav> </nav>
         <section Wrap-content>
             <div class="M-container">
-            <!-- 歌曲列表 -->
+                <!-- 歌曲列表 -->
                 <ul class="container">
                 </ul>
             </div>
@@ -53,41 +53,44 @@
     </div>
     <div class="Contextpage-two">
         <div class="T-content-one">
-           <div class="ft-middle m2">
-                    <span class="return-key">
+            <div class="ft-middle m2">
+                <span class="return-key">
                     <img src="images/return.png" alt="">
                     </span>
-                    <p class="name xmpname m1">请选择歌曲..</p>
-                    <p class="artist xmpartist m1">未选择..</p>
-                </div>
-                <div class="cover"><img src="images/cd185.png" alt="">
+                <p class="name xmpname m1">请选择歌曲..</p>
+                <p class="artist xmpartist m1">未选择..</p>
+            </div>
+            <div class="cover"><img src="images/cd185.png" alt="">
                 <div class="t-img">
-                               <img src="images/img.jpg" alt="">
-                           </div>
-                           <div class="b-img">
-                               <img src="images/line.png" alt="">
-                           </div>
+                    <img src="images/img.jpg" alt="">
                 </div>
-                <!-- 进度条 -->
-                <div class="Progress-bar">
+                <div class="b-img">
+                    <img src="images/line.png" alt="">
+                </div>
+            </div>
+            <div class="lrcContainer">
+                <ul class="lrcCon">
+                    
+                </ul>
+            </div>
+            <!-- 进度条 -->
+            <div class="Progress-bar">
                 <span class='timeStart'>00:00</span>
-                   
-                	<div class="progress-line">
+                <div class="progress-line">
                     <span class="drop-point"></span>
                     <span class="real-line"></span>
-                	<div class="progress-line-full"></div>
-                	</div>
-                	<span class='totaltime'>00:00</span>
+                    <div class="progress-line-full"></div>
                 </div>
-                <!-- 底部按钮 -->
-                <div class="Contextpage-footer">
-                    <div class="Antft-rigth">
-                  
-            <i class="bigicon-prev bigicon-tongyong"></i> 
-            <i class="bigicon-play  bigicon-tongyong "></i>
-            <i class="bigicon-next bigicon-tongyong"></i>
-        </div>
+                <span class='totaltime'>00:00</span>
+            </div>
+            <!-- 底部按钮 -->
+            <div class="Contextpage-footer">
+                <div class="Antft-rigth">
+                    <i class="bigicon-prev bigicon-tongyong"></i>
+                    <i class="bigicon-play  bigicon-tongyong "></i>
+                    <i class="bigicon-next bigicon-tongyong"></i>
                 </div>
+            </div>
         </div>
         <img src="" alt="">
         <div class="T-content-two">
@@ -102,15 +105,16 @@
     var a = new AudioFace.music.AudioM();
 
 
-  
+
     a.audioNext('.icon-next', '.musiclist', '.icon-play', 'icon-pause');
-    a.audioNext('.bigicon-next', '.musiclist','.bigicon-play', 'bigicon-pause');
-    a.animate('.footer-play', '.Contextpage-two','.bigicon-play','.b-img','.return-key');
-    a.audioControl('.bigicon-play','bigicon-pause','.b-img');
+    a.audioNext('.bigicon-next', '.musiclist', '.bigicon-play', 'bigicon-pause');
+    a.animate('.footer-play', '.Contextpage-two', '.bigicon-play', '.b-img', '.return-key');
+    a.audioControl('.bigicon-play', 'bigicon-pause', '.b-img');
     a.audioPrev('.bigicon-prev', '.musiclist', '.icon-play', 'icon-pause');
-    a.audioProcess('.totaltime','.timeStart','.drop-point','.progress-line-full');
-      a.audioPlay('.musiclist', 'icon-pause', '.icon-play','.bigicon-play','bigicon-pause');
-    a.audioControl('.icon-play ', 'icon-pause','.b-img');
+    a.audioProcess('.totaltime', '.timeStart', '.drop-point', '.progress-line-full');
+    a.audioPlay('.musiclist', 'icon-pause', '.icon-play', '.bigicon-play', 'bigicon-pause');
+    a.audioControl('.icon-play ', 'icon-pause', '.b-img');
+    a.playpause('.icon-play ', 'icon-pause')
     $('.musiclist span').addClass('Num');
     $('.musiclist div').addClass('SongN');
     </script>
