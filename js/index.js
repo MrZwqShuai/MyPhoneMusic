@@ -125,7 +125,6 @@ AudioFace.music.AudioM.prototype = {
                 })
             } else {
                 $(element2).on('tap', function() {
-                    console.log(1)
                 })
             }
         });
@@ -237,10 +236,10 @@ AudioFace.music.AudioM.prototype = {
             var singer = $(element1).attr('singer')
         })
     },
-    audioLrcParse: function() {
+    // 歌词解析
+    audioLrcParse: function(element1,element2,element3) {
         var _self = this
         var songlrc = this.arr3[0];
-        // console.log(songlrc)
         var Lyrics = /([\d{2}:\d{2}\.\d{2}]+)([^\[]+)/g;
         var arrTime = [];
         var arrLrc = [];
@@ -248,50 +247,33 @@ AudioFace.music.AudioM.prototype = {
             var aa = RegExp.$1.split(':');
             var minute = parseInt(aa[0]); //分钟
             var second = parseInt(aa[1]);
+            console.log(minute,second)
             var totaltime = minute * 60 + second;
             arrTime.push(totaltime);
             var aa = RegExp.$2.replace(/[\[\]]/g, '');
             arrLrc.push(aa);
         }
         arrLrc.push(aa);
-        console.log(arrLrc);
         for (var i = 0; i < arrLrc.length; i++) {
             var lrcLi = '<li>' + arrLrc[i] + '</li>';
-            $('.lrcCon').append(lrcLi);
+            $(element1).append(lrcLi);
         }
-        // function MakeTime(){
-        //         arrTime.map(function(list,index){
-        //             var arr         = list.split(':'),
-        //                 minute      = parseInt(arr[0]),//分钟
-        //                 second      = parseInt(arr[1]),
-        //                 millisecond = parseInt(parseFloat(arr[1])%1*100);
-        //                 arrTime[index] =minute * 60 + second; 
-        //                 console.log(arrLrc[index])
-        //         });
-        //     }
-        //     MakeTime();
-        // return [arrTime,arrLrc];
-       
-             _self.Audio.addEventListener('timeupdate', function() {
+        _self.Audio.addEventListener('timeupdate', function() {
             var nowTime = parseInt(this.currentTime);
             for (var i in arrTime) {
-                var index = 0 ;
+                var index = 0;
                 if (arrTime[i] == nowTime) {
                     index++;
-                    var Height = $('.lrcContainer').height();
-                    var height = $('.lrcCon li').eq(i).height();
-                    console.log(height*i)
-                    $('.lrcCon').find('li').eq(i).addClass('m3').siblings().removeClass('m3') ;
-                    $('.lrcCon').css('marginTop',''+( Height / 2 - i * height )+'px') ;
-                    console.log(index)
+                    var Height = $(element2).height();
+                    var height = $(element3).eq(i).height();
+                    $(element1).find('li').eq(i).addClass('m3').siblings().removeClass('m3');
+                    $(element1).css('marginTop', '' + (Height / 2 - i * height) + 'px');
                 }
             }
         })
-      
-       
     },
     // 获取json数据
-    audioloadData: function(element) {
+    audioloadData: function() {
         var _self = this;
         var arr = new Array();
         var arr1 = new Array();
