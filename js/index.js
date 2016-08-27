@@ -22,8 +22,6 @@ AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.audioControl(element);
     this.audioPlay(element);
     this.audioloadData();
-    this.audioLrcParse();
-    console.log(this);
 };
 AudioFace.music.AudioM.prototype = {
     constructor: AudioFace.music.AudioM,
@@ -35,11 +33,9 @@ AudioFace.music.AudioM.prototype = {
     },
     playpause: function(element, element1) {
         this.Audio.addEventListener('pause', function() {
-            console.log('暂停a ');
             $(element).removeClass(element1);
         });
         this.Audio.addEventListener('playing', function() {
-            console.log('播放中');
             $(element).addClass(element1);
         });
     },
@@ -213,7 +209,8 @@ AudioFace.music.AudioM.prototype = {
                 $(element2).addClass(element3);
             });
             var singer = $(element1).attr('singer')
-        })
+        }) ;
+        _self.audioLrcParse();
     },
     // 上一首
     audioPrev: function(element, element1, element2, element3) {
@@ -239,30 +236,48 @@ AudioFace.music.AudioM.prototype = {
     // 歌词解析
     audioLrcParse: function(element1,element2,element3) {
         var _self = this
-        var songlrc = this.arr3[0];
+        var songlrc = this.arr3;
         var Lyrics = /([\d{2}:\d{2}\.\d{2}]+)([^\[]+)/g;
         var arrTime = [];
         var arrLrc = [];
-        while (Lyrics.exec(songlrc)) {
+        
+      
+        $('.musiclist').on('tap',function(){
+               var Ellist = ($(element1).find('li'))
+        if(Ellist.length != 0){
+              Ellist.remove() ;
+             }
+             arrLrc = [] ;
+             if(arrTime.length!=0){
+                arrTime = [] ;
+             }
+             var lrcIndex = $(this).index() ;
+             while (Lyrics.exec(songlrc[lrcIndex])) {
             var aa = RegExp.$1.split(':');
             var minute = parseInt(aa[0]); //分钟
             var second = parseInt(aa[1]);
-            console.log(minute,second)
             var totaltime = minute * 60 + second;
             arrTime.push(totaltime);
-            var aa = RegExp.$2.replace(/[\[\]]/g, '');
-            arrLrc.push(aa);
+            var Aa = RegExp.$2.replace(/[\[\]]/g, '');
+            arrLrc.push(Aa);
+
+
         }
-        arrLrc.push(aa);
-        for (var i = 0; i < arrLrc.length; i++) {
+          
+            for (var i = 0; i < arrLrc.length; i++) {
             var lrcLi = '<li>' + arrLrc[i] + '</li>';
-            $(element1).append(lrcLi);
+           
+            $(element1).append(lrcLi) ;
         }
-        setInterval(function(){
-                  _self.Audio.addEventListener('timeupdate', function() {
+        
+    
+        })
+        _self.Audio.addEventListener('timeupdate', function() {
             var nowTime = parseInt(this.currentTime);
+            
             for (var i in arrTime) {
                 var index = 0;
+
                 if (arrTime[i] == nowTime) {
                     index++;
                     var Height = $(element2).height();
@@ -272,7 +287,7 @@ AudioFace.music.AudioM.prototype = {
                 }
             }
         }) 
-              },50);
+        
  
     },
     // 获取json数据
@@ -300,15 +315,15 @@ AudioFace.music.AudioM.prototype = {
                         index = index + 1;
                         if (i == 0) {
                             str += [
-                                '<li class="musiclist" id="#musiclist" singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span>' + ("0" + (i + 1)) + '</span>' + '<div>' + item.songName + '<br>' + item.Singer + '</div></li>'
+                                '<li class="musiclist"  singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span>' + ("0" + (i + 1)) + '</span>' + '<div>' + item.songName + '<br>' + item.Singer + '</div></li>'
                             ].join('');
                         } else if (i < 10) {
                             str += [
-                                '<li class="musiclist" id="#musiclist" singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span>' + ("0" + (i + 1)) + '</span>' + '<div>' + item.songName + '<br>' + item.Singer + '</div> </li>'
+                                '<li class="musiclist"  singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span>' + ("0" + (i + 1)) + '</span>' + '<div>' + item.songName + '<br>' + item.Singer + '</div> </li>'
                             ].join('');
                         } else {
                             str += [
-                                '<li class="musiclist" id="#musiclist" singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span>' + (i + 1) + '</span>' + '<div>' + item.songName + '<br>' + item.Singer + '</div></li>'
+                                '<li class="musiclist"  singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span>' + (i + 1) + '</span>' + '<div>' + item.songName + '<br>' + item.Singer + '</div></li>'
                             ].join('');
                         }
                     })
