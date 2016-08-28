@@ -40,7 +40,7 @@ AudioFace.music.AudioM.prototype = {
         });
     },
     // 监听播放
-    audioPlay: function(element, element1, element2, element3, element4) {
+    audioPlay: function(element, element1, element2, element3, element4,element5,element6,element7) {
         var _self = this;
         $(element).on('tap', function() {
             _self.Audio.addEventListener('loadstart', function() {
@@ -52,6 +52,7 @@ AudioFace.music.AudioM.prototype = {
                 $('.xmpname').html(songN);
                 $(element2).addClass(element1);
                 $(element3).addClass(element4);
+                 _self.audioLrcParse(element5,element6,element7,_self.currentIndex) ;
             });
             _self.Audio.addEventListener('error', function() {
                 this.Ftext = "加载失败";
@@ -191,7 +192,7 @@ AudioFace.music.AudioM.prototype = {
         })
     },
     // 切换下一首
-    audioNext: function(element, element1, element2, element3) {
+    audioNext: function(element, element1, element2, element3,element4,element5,element6) {
         var _self = this;
         $(element).on('tap', function() {
             if (_self.currentIndex == 28) {
@@ -204,6 +205,7 @@ AudioFace.music.AudioM.prototype = {
             _self.Audio.addEventListener('canplaythrough', function() {
                 var singer = _self.arr2[_self.currentIndex];
                 var songN = _self.arr1[_self.currentIndex];
+                _self.audioLrcParse(element4,element5,element6,_self.currentIndex) ;
                 $('.xmpartist').html(singer);
                 $('.xmpname').html(songN);
                 $(element2).addClass(element3);
@@ -213,7 +215,7 @@ AudioFace.music.AudioM.prototype = {
         _self.audioLrcParse();
     },
     // 上一首
-    audioPrev: function(element, element1, element2, element3) {
+    audioPrev: function(element, element1, element2, element3,element4,element5,element6) {
         var _self = this;
         $(element).on('tap', function() {
             if (_self.currentIndex == 0) {
@@ -226,6 +228,7 @@ AudioFace.music.AudioM.prototype = {
             _self.Audio.addEventListener('canplaythrough', function() {
                 var singer = _self.arr2[_self.currentIndex];
                 var songN = _self.arr1[_self.currentIndex];
+                _self.audioLrcParse(element4,element5,element6,_self.currentIndex)
                 $('.xmpartist').html(singer);
                 $('.xmpname').html(songN);
                 $(element2).addClass(element3);
@@ -234,16 +237,16 @@ AudioFace.music.AudioM.prototype = {
         })
     },
     // 歌词解析
-    audioLrcParse: function(element1,element2,element3) {
+    audioLrcParse: function(element1,element2,element3,lrcIndex) {
         var _self = this
         var songlrc = this.arr3;
         var Lyrics = /([\d{2}:\d{2}\.\d{2}]+)([^\[]+)/g;
         var arrTime = [];
         var arrLrc = [];
         
-      
-        $('.musiclist').on('tap',function(){
-               var Ellist = ($(element1).find('li'))
+             
+        
+        var Ellist = $(element1).find('li')
         if(Ellist.length != 0){
               Ellist.remove() ;
              }
@@ -251,7 +254,7 @@ AudioFace.music.AudioM.prototype = {
              if(arrTime.length!=0){
                 arrTime = [] ;
              }
-             var lrcIndex = $(this).index() ;
+             
              while (Lyrics.exec(songlrc[lrcIndex])) {
             var aa = RegExp.$1.split(':');
             var minute = parseInt(aa[0]); //分钟
@@ -269,15 +272,12 @@ AudioFace.music.AudioM.prototype = {
            
             $(element1).append(lrcLi) ;
         }
-        
-    
-        })
-        _self.Audio.addEventListener('timeupdate', function() {
-            var nowTime = parseInt(this.currentTime);
+                _self.Audio.addEventListener('timeupdate', function() {
+            var nowTime = parseInt(_self.Audio.currentTime);
             
             for (var i in arrTime) {
                 var index = 0;
-
+                
                 if (arrTime[i] == nowTime) {
                     index++;
                     var Height = $(element2).height();
