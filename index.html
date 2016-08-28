@@ -102,12 +102,12 @@
     var a = new AudioFace.music.AudioM();
     a.audioProcess('.totaltime', '.timeStart', '.drop-point', '.progress-line-full');
     a.audioLrcParse('.lrcCon','.lrcContainer','.lrcCon li') ;
-    a.audioNext('.icon-next', '.musiclist', '.icon-play', 'icon-pause');
-    a.audioNext('.bigicon-next', '.musiclist', '.bigicon-play', 'bigicon-pause');
+    a.audioNext('.icon-next', '.musiclist', '.icon-play', 'icon-pause','.lrcCon','.lrcContainer','.lrcCon li');
+    a.audioNext('.bigicon-next', '.musiclist', '.bigicon-play', 'bigicon-pause','.lrcCon','.lrcContainer','.lrcCon li','.lrcCon','.lrcContainer','.lrcCon li');
     a.animate('.footer-play', '.Contextpage-two', '.bigicon-play', '.b-img', '.return-key');
     a.audioControl('.bigicon-play', 'bigicon-pause', '.b-img');
-    a.audioPrev('.bigicon-prev', '.musiclist', '.icon-play', 'icon-pause');
-    a.audioPlay('.musiclist', 'icon-pause', '.icon-play', '.bigicon-play', 'bigicon-pause');
+    a.audioPrev('.bigicon-prev', '.musiclist', '.icon-play', 'icon-pause','.lrcCon','.lrcContainer','.lrcCon li');
+    a.audioPlay('.musiclist', 'icon-pause', '.icon-play', '.bigicon-play', 'bigicon-pause','.lrcCon','.lrcContainer','.lrcCon li');
     a.audioControl('.icon-play ', 'icon-pause', '.b-img');
     a.playpause('.icon-play ', 'icon-pause');
     $('.musiclist span').addClass('Num');
