@@ -1,16 +1,7 @@
 'use strict'
 var AudioFace = {}
 AudioFace.music = {
-    // var currentIndex=-1;
-    // //  播放器元素对象
-    // // 歌曲列表
-    // var mlist=["music/youdiantian.mp3","music/tingmamadehua.mp3","music/qingtian.mp3"];
-    // // 图片路径
-    // var imglist=["blank.png","Lana Del Rey.jpg","0039Pp2W372JsM.jpg"];
-    // //歌曲路径
-    // var msrc=["music/youdiantian.mp3","music/tingmamadehua.mp3","music/qingtian.mp3"];
-    // //进度条
-    // var stick=document.getElementById("stick");
+    
 }
 AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.element = element;
@@ -32,8 +23,10 @@ AudioFace.music.AudioM.prototype = {
         this.currentIndex = -1;
     },
     playpause: function(element, element1) {
+        var _self = this ;
         this.Audio.addEventListener('pause', function() {
             $(element).removeClass(element1);
+            clearInterval(_self.run);
         });
         this.Audio.addEventListener('playing', function() {
             $(element).addClass(element1);
@@ -272,8 +265,8 @@ AudioFace.music.AudioM.prototype = {
            
             $(element1).append(lrcLi) ;
         }
-                _self.Audio.addEventListener('timeupdate', function() {
-            var nowTime = parseInt(_self.Audio.currentTime);
+              _self.run = setInterval(function(){
+                   var nowTime = parseInt(_self.Audio.currentTime);
             
             for (var i in arrTime) {
                 var index = 0;
@@ -283,10 +276,15 @@ AudioFace.music.AudioM.prototype = {
                     var Height = $(element2).height();
                     var height = $(element3).eq(i).height();
                     $(element1).find('li').eq(i).addClass('m3').siblings().removeClass('m3');
-                    $(element1).css('marginTop', '' + (Height / 2 - i * height) + 'px');
+                    $(element1).css({
+                            'transform': 'translate3D(0,' +( Height / 2 - i * height )+ 'px,  0)',
+                            '-webkit-transform': 'translate3D( 0,' +( Height / 2 - i * height )+ 'px, 0)'
+                        });
                 }
             }
-        }) 
+            },50)
+         
+         
         
  
     },
