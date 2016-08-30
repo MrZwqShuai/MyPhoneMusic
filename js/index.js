@@ -1,16 +1,6 @@
 'use strict'
 var AudioFace = {}
 AudioFace.music = {
-    // var currentIndex=-1;
-    // //  播放器元素对象
-    // // 歌曲列表
-    // var mlist=["music/youdiantian.mp3","music/tingmamadehua.mp3","music/qingtian.mp3"];
-    // // 图片路径
-    // var imglist=["blank.png","Lana Del Rey.jpg","0039Pp2W372JsM.jpg"];
-    // //歌曲路径
-    // var msrc=["music/youdiantian.mp3","music/tingmamadehua.mp3","music/qingtian.mp3"];
-    // //进度条
-    // var stick=document.getElementById("stick");
 }
 AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.element = element;
