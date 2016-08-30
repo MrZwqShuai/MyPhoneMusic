@@ -285,7 +285,6 @@ AudioFace.music.AudioM.prototype = {
         }
         // 歌词同步
         _self.run = setInterval(function() {//只执行了一次
-            console.log(111);
             var nowTime = parseInt(_self.Audio.currentTime);
             for (var t in _self.arrTime) { //这里数组不应该有之前的数组
                 if (parseInt(_self.arrTime[t] / 1000) == (nowTime)) {
