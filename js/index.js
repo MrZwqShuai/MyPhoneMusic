@@ -1,7 +1,16 @@
 'use strict'
 var AudioFace = {}
 AudioFace.music = {
-    
+    // var currentIndex=-1;
+    // //  播放器元素对象
+    // // 歌曲列表
+    // var mlist=["music/youdiantian.mp3","music/tingmamadehua.mp3","music/qingtian.mp3"];
+    // // 图片路径
+    // var imglist=["blank.png","Lana Del Rey.jpg","0039Pp2W372JsM.jpg"];
+    // //歌曲路径
+    // var msrc=["music/youdiantian.mp3","music/tingmamadehua.mp3","music/qingtian.mp3"];
+    // //进度条
+    // var stick=document.getElementById("stick");
 }
 AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.element = element;
@@ -23,7 +32,7 @@ AudioFace.music.AudioM.prototype = {
         this.currentIndex = -1;
     },
     playpause: function(element, element1) {
-        var _self = this ;
+        var _self = this;
         this.Audio.addEventListener('pause', function() {
             $(element).removeClass(element1);
             clearInterval(_self.run);
@@ -33,7 +42,7 @@ AudioFace.music.AudioM.prototype = {
         });
     },
     // 监听播放
-    audioPlay: function(element, element1, element2, element3, element4,element5,element6,element7) {
+    audioPlay: function(element, element1, element2, element3, element4, element5, element6, element7) {
         var _self = this;
         $(element).on('tap', function() {
             _self.Audio.addEventListener('loadstart', function() {
@@ -45,7 +54,6 @@ AudioFace.music.AudioM.prototype = {
                 $('.xmpname').html(songN);
                 $(element2).addClass(element1);
                 $(element3).addClass(element4);
-                 _self.audioLrcParse(element5,element6,element7,_self.currentIndex) ;
             });
             _self.Audio.addEventListener('error', function() {
                 this.Ftext = "加载失败";
@@ -54,6 +62,7 @@ AudioFace.music.AudioM.prototype = {
             _self.currentIndex = Number($(this).children('.Num').text()) - 1;
             _self.Audio.src = _self.arr[_self.currentIndex];
             _self.Audio.play();
+            _self.audioLrcParse(element5, element6, element7, _self.currentIndex);
             var songN = $(this).attr('name');
             var singer = $(this).attr('singer');
             $('.xmpartist').html(singer);
@@ -114,8 +123,7 @@ AudioFace.music.AudioM.prototype = {
                     'animation-delay': '1.8s'
                 })
             } else {
-                $(element2).on('tap', function() {
-                })
+                $(element2).on('tap', function() {})
             }
         });
     },
@@ -185,10 +193,10 @@ AudioFace.music.AudioM.prototype = {
         })
     },
     // 切换下一首
-    audioNext: function(element, element1, element2, element3,element4,element5,element6) {
+    audioNext: function(element, element1, element2, element3, element4, element5, element6) {
         var _self = this;
         $(element).on('tap', function() {
-            if (_self.currentIndex == 28) {
+            if (_self.currentIndex == ($('.musiclist').length-1)) {
                 _self.currentIndex = 0;
             } else {
                 _self.currentIndex++;
@@ -198,21 +206,20 @@ AudioFace.music.AudioM.prototype = {
             _self.Audio.addEventListener('canplaythrough', function() {
                 var singer = _self.arr2[_self.currentIndex];
                 var songN = _self.arr1[_self.currentIndex];
-                _self.audioLrcParse(element4,element5,element6,_self.currentIndex) ;
                 $('.xmpartist').html(singer);
                 $('.xmpname').html(songN);
                 $(element2).addClass(element3);
             });
+            _self.audioLrcParse(element4, element5, element6, _self.currentIndex);
             var singer = $(element1).attr('singer')
-        }) ;
-        _self.audioLrcParse();
+        });
     },
     // 上一首
-    audioPrev: function(element, element1, element2, element3,element4,element5,element6) {
+    audioPrev: function(element, element1, element2, element3, element4, element5, element6) {
         var _self = this;
         $(element).on('tap', function() {
             if (_self.currentIndex == 0) {
-                _self.currentIndex = 28;
+                _self.currentIndex = ($('.musiclist').length-1);
             } else {
                 _self.currentIndex--;
             }
@@ -221,72 +228,59 @@ AudioFace.music.AudioM.prototype = {
             _self.Audio.addEventListener('canplaythrough', function() {
                 var singer = _self.arr2[_self.currentIndex];
                 var songN = _self.arr1[_self.currentIndex];
-                _self.audioLrcParse(element4,element5,element6,_self.currentIndex)
                 $('.xmpartist').html(singer);
                 $('.xmpname').html(songN);
                 $(element2).addClass(element3);
             });
+            _self.audioLrcParse(element4, element5, element6, _self.currentIndex)
             var singer = $(element1).attr('singer')
         })
     },
     // 歌词解析
-    audioLrcParse: function(element1,element2,element3,lrcIndex) {
+    audioLrcParse: function(element1, element2, element3, lrcIndex) {
         var _self = this
         var songlrc = this.arr3;
         var Lyrics = /([\d{2}:\d{2}\.\d{2}]+)([^\[]+)/g;
-        var arrTime = [];
+        _self.arrTime = [];
         var arrLrc = [];
-        
-             
-        
-        var Ellist = $(element1).find('li')
-        if(Ellist.length != 0){
-              Ellist.remove() ;
-             }
-             arrLrc = [] ;
-             if(arrTime.length!=0){
-                arrTime = [] ;
-             }
-             
-             while (Lyrics.exec(songlrc[lrcIndex])) {
+        var Ellist = $(element1).find('li');
+        if (Ellist.length != 0) {
+            Ellist.remove();
+            arrLrc = [];
+        }
+       // 歌词时间分割
+        while (Lyrics.exec(songlrc[lrcIndex])) {
             var aa = RegExp.$1.split(':');
-            var minute = parseInt(aa[0]); //分钟
-            var second = parseInt(aa[1]);
-            var totaltime = minute * 60 + second;
-            arrTime.push(totaltime);
             var Aa = RegExp.$2.replace(/[\[\]]/g, '');
+            var minute = parseInt(aa[0]) * 60 * 1000; //分钟
+            var second = parseInt(aa[1]) * 1000;
+            var millisecond = parseInt(parseFloat(aa[1]) % 1 * 100);
+            var totaltime = minute + second + millisecond;
+            _self.arrTime.push(totaltime);
             arrLrc.push(Aa);
-
-
         }
-          
-            for (var i = 0; i < arrLrc.length; i++) {
+        
+        for (var i = 0; i < arrLrc.length; i++) {
             var lrcLi = '<li>' + arrLrc[i] + '</li>';
-           
-            $(element1).append(lrcLi) ;
+            $(element1).append(lrcLi);
         }
-              _self.run = setInterval(function(){
-                   var nowTime = parseInt(_self.Audio.currentTime);
-            
-            for (var i in arrTime) {
-                var index = 0;
-                
-                if (arrTime[i] == nowTime) {
-                    index++;
+        console.log(_self.arrTime);
+        // 歌词同步
+        _self.run = setInterval(function() {//只执行了一次
+            var nowTime = parseInt(_self.Audio.currentTime);
+            for (var t in _self.arrTime) { //这里数组不应该有之前的数组
+                if (parseInt(_self.arrTime[t] / 1000) == (nowTime)) {
                     var Height = $(element2).height();
-                    var height = $(element3).eq(i).height();
-                    $(element1).find('li').eq(i).addClass('m3').siblings().removeClass('m3');
+                    var height = $(element3).eq(t).height();
+                    $(element1).find('li').eq(t).addClass('m3').siblings().removeClass('m3');
                     $(element1).css({
-                            'transform': 'translate3D(0,' +( Height / 2 - i * height )+ 'px,  0)',
-                            '-webkit-transform': 'translate3D( 0,' +( Height / 2 - i * height )+ 'px, 0)'
+                            'transform': 'translate3D(0,' +( Height / 2 - t * height )+ 'px,  0)',
+                            '-webkit-transform': 'translate3D( 0,' +( Height / 2 - t * height )+ 'px, 0)'
                         });
                 }
             }
-            },50)
-         
-         
-        
- 
+          
+        }, 50)
     },
     // 获取json数据
     audioloadData: function() {
