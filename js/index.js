@@ -12,7 +12,7 @@ AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.audioControl(element);
     this.audioPlay(element);
     this.audioloadData();
-    this.loadImg('../images/1.jpeg',this.back)
+    this.loadImg('images/1.jpeg',this.back)
 };
 AudioFace.music.AudioM.prototype = {
     constructor: AudioFace.music.AudioM,
