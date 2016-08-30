@@ -22,6 +22,7 @@ AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.audioControl(element);
     this.audioPlay(element);
     this.audioloadData();
+    this.loadImg('../images/1.jpeg',this.back)
 };
 AudioFace.music.AudioM.prototype = {
     constructor: AudioFace.music.AudioM,
@@ -34,11 +35,13 @@ AudioFace.music.AudioM.prototype = {
     playpause: function(element, element1) {
         var _self = this;
         this.Audio.addEventListener('pause', function() {
-            $(element).removeClass(element1);
             clearInterval(_self.run);
+            $(element).removeClass(element1);
+
         });
         this.Audio.addEventListener('playing', function() {
             $(element).addClass(element1);
+                
         });
     },
     // 监听播放
@@ -74,7 +77,7 @@ AudioFace.music.AudioM.prototype = {
         $(element).on('tap', function() {
             _self.playpause(element, element1);
             if (!_self.Audio.paused) {
-                _self.Audio.pause();
+                _self.Audio.pause(); 
                 $(element3).css({
                     'right': '0rem',
                     'animation': 'none',
@@ -91,6 +94,22 @@ AudioFace.music.AudioM.prototype = {
                 })
             }
         })
+    },
+    loadImg: function(url,callback){
+        var img  = new Image() ;
+        img.src = url ;
+        if(img.complete){
+            callback.call(img) ;
+            return ;
+        }
+        img.onload = function(){
+            callback.call(img) ;
+        } ;
+
+        
+    },
+    back: function(){
+        console.log('success');
     },
     animate: function(element, element1, element2, element3, element4) {
         var _self = this;
@@ -264,9 +283,9 @@ AudioFace.music.AudioM.prototype = {
             var lrcLi = '<li>' + arrLrc[i] + '</li>';
             $(element1).append(lrcLi);
         }
-        console.log(_self.arrTime);
         // 歌词同步
         _self.run = setInterval(function() {//只执行了一次
+            console.log(111);
             var nowTime = parseInt(_self.Audio.currentTime);
             for (var t in _self.arrTime) { //这里数组不应该有之前的数组
                 if (parseInt(_self.arrTime[t] / 1000) == (nowTime)) {
@@ -280,7 +299,7 @@ AudioFace.music.AudioM.prototype = {
                 }
             }
           
-        }, 50)
+        }, 1000);
     },
     // 获取json数据
     audioloadData: function() {
