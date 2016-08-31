@@ -1,7 +1,6 @@
 'use strict'
 var AudioFace = {}
-AudioFace.music = {
-}
+AudioFace.music = {}
 AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.element = element;
     this.element1 = element1;
@@ -12,7 +11,7 @@ AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.audioControl(element);
     this.audioPlay(element);
     this.audioloadData();
-    this.loadImg('images/1.jpeg',this.back)
+    this.loadImg('images/1.jpeg', this.back);
 };
 AudioFace.music.AudioM.prototype = {
     constructor: AudioFace.music.AudioM,
@@ -27,11 +26,10 @@ AudioFace.music.AudioM.prototype = {
         this.Audio.addEventListener('pause', function() {
             clearInterval(_self.run);
             $(element).removeClass(element1);
-
         });
         this.Audio.addEventListener('playing', function() {
             $(element).addClass(element1);
-                
+
         });
     },
     // 监听播放
@@ -55,7 +53,9 @@ AudioFace.music.AudioM.prototype = {
             _self.currentIndex = Number($(this).children('.Num').text()) - 1;
             _self.Audio.src = _self.arr[_self.currentIndex];
             _self.Audio.play();
+            console.log(_self.currentIndex)
             _self.audioLrcParse(element5, element6, element7, _self.currentIndex);
+            _self.toggleImg($('.t-img img'), _self.currentIndex);
             var songN = $(this).attr('name');
             var singer = $(this).attr('singer');
             $('.xmpartist').html(singer);
@@ -67,7 +67,7 @@ AudioFace.music.AudioM.prototype = {
         $(element).on('tap', function() {
             _self.playpause(element, element1);
             if (!_self.Audio.paused) {
-                _self.Audio.pause(); 
+                _self.Audio.pause();
                 $(element3).css({
                     'right': '0rem',
                     'animation': 'none',
@@ -85,21 +85,25 @@ AudioFace.music.AudioM.prototype = {
             }
         })
     },
-    loadImg: function(url,callback){
-        var img  = new Image() ;
-        img.src = url ;
-        if(img.complete){
-            callback.call(img) ;
-            return ;
+    loadImg: function(url, callback) {
+        var img = new Image();
+        img.src = url;
+        if (img.complete) {
+            callback.call(img);
+            return;
         }
-        img.onload = function(){
-            callback.call(img) ;
-        } ;
+        img.onload = function() {
+            callback.call(img);
+        };
 
-        
     },
-    back: function(){
+    back: function() {
         console.log('success');
+    },
+    toggleImg: function(ele, index) {
+        var _self = this;
+        var imgArr = ['http://y.gtimg.cn/music/photo_new/T002R300x300M000003RMaRI1iFoYd.jpg?max_age=2592000', 'http://y.gtimg.cn/music/photo_new/T001R300x300M000003ZQQb64D5317.jpg?max_age=2592000', 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003K4mFV3B9UfM.jpg?max_age=2592000', 'http://y.gtimg.cn/music/photo_new/T002R300x300M000001sKd2l0dVkXa.jpg', 'http://y.gtimg.cn/music/photo_new/T002R300x300M000004CFwog26ax08.jpg', 'http://img.xiami.net/images/album/img0/3557921258599818_2.jpg', 'http://img.xiami.net/images/album/img69/7169/5100191335342155_2.jpg', 'http://img.xiami.net/images/album/img54/173854/1297173854_2.jpg', 'http://img.xiami.net/images/album/img58/3058/154291468997051_2.jpg', 'http://img.xiami.net/images/album/img69/7169/965946861397635527_2.jpg', 'http://img.xiami.net/images/album/img42/442/19261378203144_2.jpg', 'http://img.xiami.net/images/album/img58/23258/3207771470901509_2.jpg', 'http://img.xiami.net/images/album/img52/7052/3682971265854129_2.jpg', 'http://img.xiami.net/images/album/img86/773286/7732861412773286_2.jpg', 'http://img.xiami.net/images/album/img39/2739/145831376589249_2.jpg', 'http://img.xiami.net/images/album/img24/61224/15222071141472178795_2.jpg', 'http://img.xiami.net/images/album/img58/23258/4314411300697056_2.jpg', 'http://img.xiami.net/images/album/img69/7169/4217651472021043_2.jpg', 'http://img.xiami.net/images/album/img12/55712/20080783461411725324_2.jpg', 'http://img.xiami.net/images/album/img60/63760/3414911358479166_2.jpg', 'http://img.xiami.net/images/album/img66/7366/4324541301473658_2.jpg', 'http://img.xiami.net/images/album/img66/7366/3141491397734019_2.jpg', 'http://img.xiami.net/images/album/img94/83094/4175261470897820_2.jpg', 'http://img.xiami.net/images/album/img66/7366/3967281289900657_2.jpg', 'http://img.xiami.net/images/album/img39/2739/32927_2.jpg', 'http://img.xiami.net/images/album/img64/1164/57681417575958_2.jpg', 'http://img.xiami.net/images/album/img66/7366/170711_2.jpg', 'http://img.xiami.net/images/album/img83/123483/5619081355304243_2.png', 'http://img.xiami.net/images/album/img83/2075780083/5373969721437396972_2.jpg', 'http://img.xiami.net/images/album/img79/23979/1709891387951723_2.jpg'];
+        $(ele).attr('src', imgArr[index]);
     },
     animate: function(element, element1, element2, element3, element4) {
         var _self = this;
@@ -205,7 +209,7 @@ AudioFace.music.AudioM.prototype = {
     audioNext: function(element, element1, element2, element3, element4, element5, element6) {
         var _self = this;
         $(element).on('tap', function() {
-            if (_self.currentIndex == ($('.musiclist').length-1)) {
+            if (_self.currentIndex == ($('.musiclist').length - 1)) {
                 _self.currentIndex = 0;
             } else {
                 _self.currentIndex++;
@@ -220,6 +224,7 @@ AudioFace.music.AudioM.prototype = {
                 $(element2).addClass(element3);
             });
             _self.audioLrcParse(element4, element5, element6, _self.currentIndex);
+            _self.toggleImg($('.t-img img'), _self.currentIndex);
             var singer = $(element1).attr('singer')
         });
     },
@@ -228,7 +233,7 @@ AudioFace.music.AudioM.prototype = {
         var _self = this;
         $(element).on('tap', function() {
             if (_self.currentIndex == 0) {
-                _self.currentIndex = ($('.musiclist').length-1);
+                _self.currentIndex = ($('.musiclist').length - 1);
             } else {
                 _self.currentIndex--;
             }
@@ -241,7 +246,8 @@ AudioFace.music.AudioM.prototype = {
                 $('.xmpname').html(songN);
                 $(element2).addClass(element3);
             });
-            _self.audioLrcParse(element4, element5, element6, _self.currentIndex)
+            _self.audioLrcParse(element4, element5, element6, _self.currentIndex);
+            _self.toggleImg($('.t-img img'), _self.currentIndex);
             var singer = $(element1).attr('singer')
         })
     },
@@ -257,7 +263,7 @@ AudioFace.music.AudioM.prototype = {
             Ellist.remove();
             arrLrc = [];
         }
-       // 歌词时间分割
+        // 歌词时间分割
         while (Lyrics.exec(songlrc[lrcIndex])) {
             var aa = RegExp.$1.split(':');
             var Aa = RegExp.$2.replace(/[\[\]]/g, '');
@@ -268,13 +274,13 @@ AudioFace.music.AudioM.prototype = {
             _self.arrTime.push(totaltime);
             arrLrc.push(Aa);
         }
-        
+
         for (var i = 0; i < arrLrc.length; i++) {
             var lrcLi = '<li>' + arrLrc[i] + '</li>';
             $(element1).append(lrcLi);
         }
         // 歌词同步
-        _self.run = setInterval(function() {//只执行了一次
+        _self.run = setInterval(function() { //只执行了一次
             var nowTime = parseInt(_self.Audio.currentTime);
             for (var t in _self.arrTime) { //这里数组不应该有之前的数组
                 if (parseInt(_self.arrTime[t] / 1000) == (nowTime)) {
@@ -282,12 +288,12 @@ AudioFace.music.AudioM.prototype = {
                     var height = $(element3).eq(t).height();
                     $(element1).find('li').eq(t).addClass('m3').siblings().removeClass('m3');
                     $(element1).css({
-                            'transform': 'translate3D(0,' +( Height / 2 - t * height )+ 'px,  0)',
-                            '-webkit-transform': 'translate3D( 0,' +( Height / 2 - t * height )+ 'px, 0)'
-                        });
+                        'transform': 'translate3D(0,' + (Height / 2 - t * height) + 'px,  0)',
+                        '-webkit-transform': 'translate3D( 0,' + (Height / 2 - t * height) + 'px, 0)'
+                    });
                 }
             }
-          
+
         }, 1000);
     },
     // 获取json数据
@@ -300,6 +306,7 @@ AudioFace.music.AudioM.prototype = {
         var num = 0,
             $list = $('.container');
         loadData($list, num);
+
         function loadData($ele, num) {
             $.ajax({
                 url: 'json/music.json',
