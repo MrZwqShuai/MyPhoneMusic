@@ -98,7 +98,7 @@ AudioFace.music.AudioM.prototype = {
     // 图片预加载
     loadImg: function(callback){
         this.toggleImg() ;
-        var arrImg = ['images/1.jpeg','images/3.jpeg','images/111.jpg','images/return.png','images/mingren.jpg','images/img.jpg','images/play_play.png','images/play_pause.png','images/play_next.png','images/play_prev.png','images/1_02.png','images/cd185.png','images/line.png','images/skin.png'] ;
+        var arrImg = ['images/heart-img2','images/heart-img1','images/1.jpeg','images/3.jpeg','images/111.jpg','images/return.png','images/mingren.jpg','images/img.jpg','images/play_play.png','images/play_pause.png','images/play_next.png','images/play_prev.png','images/1_02.png','images/cd185.png','images/line.png','images/skin.png'] ;
         this.imgArr.push(arrImg) ;
         if (document.images) {
                 var img = new Image() ;
