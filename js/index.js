@@ -13,6 +13,7 @@ AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
     this.audioPlay(element);
     this.audioloadData();
     this.loadImg(this.back) ;
+    this.addHeart() ;
 };
 AudioFace.music.AudioM.prototype = {
     constructor: AudioFace.music.AudioM,
@@ -86,6 +87,14 @@ AudioFace.music.AudioM.prototype = {
             }
         })
     },
+    addHeart : function() {
+        var str = ['<i class="heart-img"></i> '] ;
+        var i = str.join('') ;
+        $('.musiclist').append(i) ;
+        $('.heart-img').on('tap',function(){
+            $(this).toggleClass('heart-img1') ;
+        })
+    } ,
     // 图片预加载
     loadImg: function(callback){
         this.toggleImg() ;
