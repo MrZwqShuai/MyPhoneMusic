@@ -90,9 +90,13 @@ AudioFace.music.AudioM.prototype = {
     addHeart : function() {
         var str = ['<i class="heart-img"></i> '] ;
         var i = str.join('') ;
-        $('.musiclist').append(i) ;
-        $('.heart-img').on('tap',function(){
-            $(this).toggleClass('heart-img1') ;
+        var index = null ;
+        localStorage.setItem(index,'heart-img1');
+        localStorage.getItem(index)
+                $('.musiclist').append(i) ;
+        $('.heart-img').on('tap',function(event){
+            $(this).toggleClass(localStorage.getItem(index)) ;
+            event.stopPropagation() ;
         })
     } ,
     // 图片预加载
