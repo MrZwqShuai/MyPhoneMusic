@@ -1,16 +1,13 @@
-!(function(document,window,$){
-		var arr = new Array();
- $('.Pageload').on('tap',function(){
-  $('.homepage').css({opacity:0,'z-index':-1})
-})
- // $('.icon-play').on('click',function(){
+!(function(document, window, $) {
+    var arr = new Array();
+    $('.Pageload').on('tap', function() {
+            $('.homepage').css({ opacity: 0, 'z-index': -1 })
+        })
+  $('nav span').on('tap',function(){
+    var index = $(this).index() ;
+    var pages = $('.songCon').children() ;
+    $(this).addClass('m4 m5').siblings().removeClass('m4 m5') ;
+    pages.eq(index).show().siblings().hide() ;
+  }) 
 
- // })
-   
-    $(window).on('tap',function(){
-    	if($(window).scrollTop()>=$(document).height()-$(window).height()){
-    		console.log("到底了")
-    	}
-    })
-
-})(document,window,Zepto)
+})(document, window, Zepto)
