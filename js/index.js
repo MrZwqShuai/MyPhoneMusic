@@ -51,7 +51,6 @@ AudioFace.music.AudioM.prototype = {
                 $('.xmpname').html(this.Ftext);
                 }, false);
                 _self.currentIndex = Number($(this).index())/2;
-                console.log(_self.currentIndex)
             _self.Audio.src = _self.arr[_self.currentIndex];
             _self.Audio.play();
             _self.audioLrcParse(element5, element6, element7, _self.currentIndex);
@@ -95,7 +94,6 @@ AudioFace.music.AudioM.prototype = {
         function fnStoredisplay() {
                 arrdisplay[_self.index] = (_self.sign === false ? 1 : 0);
             if (window.localStorage) {
-                console.log(arrdisplay) ;
                 localStorage.setItem(strMeruKey, arrdisplay);
             }
         }
@@ -123,7 +121,6 @@ AudioFace.music.AudioM.prototype = {
                 }
             })
         }
-        console.log(strstoreDate.split(','))
     },
     // 图片预加载
     loadImg: function(callback) {
