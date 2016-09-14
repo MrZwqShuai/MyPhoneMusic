@@ -121,6 +121,7 @@ AudioFace.music.AudioM.prototype = {
                 }
             })
         }
+        $('.rec-container').append($('.musiclist'))
     },
     // 图片预加载
     loadImg: function(callback) {
