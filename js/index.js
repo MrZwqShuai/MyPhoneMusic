@@ -99,10 +99,13 @@ AudioFace.music.AudioM.prototype = {
         }
         $('.heart-img').on('tap', function() {
            var indexF =$(this).index() ;
-           _self.index = indexF/2-0.5 ; 
+           _self.index = indexF/2-0.5 ;
+           console.log(_self.index ) 
            _self.sign = $(this).hasClass('heart-img1');
             if (_self.sign === false) {
                 $('.heart-img').eq(_self.index).addClass('heart-img1');
+                var $li = $('.musiclist').eq(_self.index).clone() ;
+                $('.rec-container').append($li) ;
             } else {
                 $('.heart-img').eq(_self.index).removeClass('heart-img1');
             }
@@ -118,6 +121,8 @@ AudioFace.music.AudioM.prototype = {
                     $('.heart-img').eq(index).removeClass('heart-img1');
                 } else {
                     $('.heart-img').eq(index).addClass('heart-img1');
+                    var $li = $('.musiclist').eq(index).clone() ;
+                    $('.rec-container').append($li) ;
                 }
             })
         }
