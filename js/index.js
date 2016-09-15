@@ -50,8 +50,13 @@ AudioFace.music.AudioM.prototype = {
                 this.Ftext = "加载失败";
                 $('.xmpname').html(this.Ftext);
                 }, false);
+            if($(this).next().attr('class')=='heart-img'){
                 _self.currentIndex = Number($(this).index())/2;
-            _self.Audio.src = _self.arr[_self.currentIndex];
+            }else {
+                _self.currentIndex = Number($(this).index()) ;
+
+            }
+            _self.Audio.src = $(this).attr('path');
             _self.Audio.play();
             _self.audioLrcParse(element5, element6, element7, _self.currentIndex);
             _self.toggleImg($('.t-img img'), _self.currentIndex);
@@ -100,7 +105,6 @@ AudioFace.music.AudioM.prototype = {
         $('.heart-img').on('tap', function() {
            var indexF =$(this).index() ;
            _self.index = indexF/2-0.5 ;
-           console.log(_self.index ) 
            _self.sign = $(this).hasClass('heart-img1');
             if (_self.sign === false) {
                 $('.heart-img').eq(_self.index).addClass('heart-img1');
@@ -108,6 +112,10 @@ AudioFace.music.AudioM.prototype = {
                 $('.rec-container').append($li) ;
             } else {
                 $('.heart-img').eq(_self.index).removeClass('heart-img1');
+                  var $li = $('.musiclist').eq(_self.index).clone() ;
+                  console.log($li) ;
+                  console.log($('.heart-img').eq(_self.index)) ;
+                  $li.remove() ;
             }
             fnStoredisplay();
             
