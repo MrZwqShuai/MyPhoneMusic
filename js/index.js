@@ -374,7 +374,7 @@ AudioFace.music.AudioM.prototype = {
                         arr3[index] = item.songlrc;
                         index = index + 1;
                                                     str += [
-                                '<li class="musiclist"  singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span class="Num"></span>' + '<div>' + item.songName + '<br>' + item.Singer + '</div></li><i class="heart-img"></i>'
+                                '<li class="musiclist"  singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span class="Num"></span>' + '<div class="showSname">' + item.songName + '<br>' + item.Singer + '</div></li><i class="heart-img"></i>'
                             ].join('');
                                    
                            })
