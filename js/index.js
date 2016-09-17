@@ -102,20 +102,20 @@ AudioFace.music.AudioM.prototype = {
                 localStorage.setItem(strMeruKey, arrdisplay);
             }
         }
+        function fnAddheart(element,index,classname) {
+                $(element).eq(index).addClass(classname) ;
+                var $li = $('.musiclist').eq(index).clone() ;
+                 $('.rec-container').append($li) ;
+        }
         $('.heart-img').on('tap', function() {
            var indexF =$(this).index() ;
            _self.index = indexF/2-0.5 ;
            _self.sign = $(this).hasClass('heart-img1');
             if (_self.sign === false) {
-                $('.heart-img').eq(_self.index).addClass('heart-img1');
-                var $li = $('.musiclist').eq(_self.index).clone() ;
-                $('.rec-container').append($li) ;
+                fnAddheart('.heart-img',_self.index,'heart-img1')
             } else {
                 $('.heart-img').eq(_self.index).removeClass('heart-img1');
                   var $li = $('.musiclist').eq(_self.index).clone() ;
-                  console.log($li) ;
-                  console.log($('.heart-img').eq(_self.index)) ;
-                  $li.remove() ;
             }
             fnStoredisplay();
             
@@ -128,9 +128,7 @@ AudioFace.music.AudioM.prototype = {
                 if (display == 0) {
                     $('.heart-img').eq(index).removeClass('heart-img1');
                 } else {
-                    $('.heart-img').eq(index).addClass('heart-img1');
-                    var $li = $('.musiclist').eq(index).clone() ;
-                    $('.rec-container').append($li) ;
+                     fnAddheart('.heart-img',index,'heart-img1')
                 }
             })
         }
@@ -376,7 +374,7 @@ AudioFace.music.AudioM.prototype = {
                         arr3[index] = item.songlrc;
                         index = index + 1;
                                                     str += [
-                                '<li class="musiclist"  singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span></span>' + '<div>' + item.songName + '<br>' + item.Singer + '</div></li><i class="heart-img"></i>'
+                                '<li class="musiclist"  singer=' + item.Singer + ' path="' + item.songSrc + '" name="' + item.songName + '">' + '<span class="Num"></span>' + '<div>' + item.songName + '<br>' + item.Singer + '</div></li><i class="heart-img"></i>'
                             ].join('');
                                    
                            })
