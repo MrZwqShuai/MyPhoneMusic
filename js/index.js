@@ -122,7 +122,6 @@ AudioFace.music.AudioM.prototype = {
             return false;
         })
         var strstoreDate = window.localStorage.getItem(strMeruKey);
-        arrdisplay = strstoreDate.split(',') ;
         if (strstoreDate) {
             strstoreDate.split(',').forEach(function(display, index) {
                 if (display == 0) {
