@@ -1,7 +1,7 @@
 
 console.log('setShareInfo', setShareInfo)
 setShareInfo({
-    title: '周杰伦',
+    title: '刘德华',
     summary: '222',
     pic: 'http://qzonestyle.gtimg.cn/aoi/sola/20150617094556_OvfOpoRKRB.png',
     url:            'https://mrzwqshuai.github.io/MyPhoneMusic/',
