@@ -1,7 +1,7 @@
 
 console.log('setShareInfo', setShareInfo)
 setShareInfo({
-    title: '张文强',
+    title: '周杰伦',
     summary: '222',
     pic: 'http://qzonestyle.gtimg.cn/aoi/sola/20150617094556_OvfOpoRKRB.png',
     url:            'https://mrzwqshuai.github.io/MyPhoneMusic/',
@@ -9,8 +9,8 @@ setShareInfo({
     callback: function (result) {
 
     alert('result成功分享')
-    alert(result)
-    document.write(result)
+    alert(result.retCode)
+    document.write(result.retCode)
     } 
 });
 var AudioFace = {}
