@@ -1,5 +1,6 @@
 'use strict'
 alert('setShareInfo', setShareInfo)
+console.log('setShareInfo', setShareInfo)
 setShareInfo({
     title:          '父爱，在你看不到的地方',
     summary:        '父爱如山，感觉不到只因身在此山中',
