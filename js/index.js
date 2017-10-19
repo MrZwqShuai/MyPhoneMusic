@@ -2,7 +2,7 @@
 console.log('setShareInfo', setShareInfo)
 setShareInfo({
     title: '温商贷红包',
-    summary: '温商贷红包转前',
+    summary: '温商贷红包转前11111',
     pic: 'http://qzonestyle.gtimg.cn/aoi/sola/20150617094556_OvfOpoRKRB.png',
     url:            'https://mrzwqshuai.github.io/MyPhoneMusic/',
     share_type: 1,
