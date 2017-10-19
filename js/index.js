@@ -10,6 +10,7 @@ setShareInfo({
 
     alert('result成功分享')
     alert(result)
+    document.write(result)
     } 
 });
 var AudioFace = {}
