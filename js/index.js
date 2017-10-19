@@ -2,8 +2,8 @@
 alert('setShareInfo', setShareInfo)
 console.log('setShareInfo', setShareInfo)
 setShareInfo({
-    title:          '父爱，在你看不到的地方',
-    summary:        '父爱如山，感觉不到只因身在此山中',
+    title:          '温商贷红包',
+    summary:        '温商贷红包 月入过万不是梦',
     pic:            'http://qzonestyle.gtimg.cn/aoi/sola/20150617094556_OvfOpoRKRB.png',
     url:            'https://mrzwqshuai.github.io/MyPhoneMusic/'
 }, function(result) {
