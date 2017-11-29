@@ -1,4 +1,4 @@
-
+alert(0)
 setShareInfo({
     title: '刘德华',
     summary: '222',
