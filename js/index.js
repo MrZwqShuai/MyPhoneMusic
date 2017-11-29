@@ -1,4 +1,4 @@
-alert(0)
+
 setShareInfo({
     title: '刘德华',
     summary: '222',
@@ -11,6 +11,7 @@ setShareInfo({
     document.write(result.retCode)
     } 
 });
+alert(0)
 console.log('setShareInfo222', setShareInfo)
 var AudioFace = {}
 AudioFace.music = {}
