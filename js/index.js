@@ -3,7 +3,7 @@ setShareInfo({
     title: '刘德华',
     summary: '222',
     pic: 'http://qzonestyle.gtimg.cn/aoi/sola/20150617094556_OvfOpoRKRB.png',
-    url:            'https://mrzwqshuai.github.io/MyPhoneMusic/',
+    url:            'https://mrzwqshuai.github.io/MyPhoneMusic/?tjrid=123456',
     callback: function (result) {
 
     alert('result成功分享')
@@ -11,7 +11,7 @@ setShareInfo({
     document.write(result.retCode)
     } 
 });
-alert(0)
+alert(99)
 console.log('setShareInfo222', setShareInfo)
 var AudioFace = {}
 AudioFace.music = {}
