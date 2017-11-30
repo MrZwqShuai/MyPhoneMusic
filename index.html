@@ -191,7 +191,8 @@
       doQQShare();
     } else {
       require([qqapi], function() {
-          console.log(window.mqq)
+          alert(window.mqq)
+          
         doQQShare();
       });
     }
@@ -264,9 +265,6 @@
     a.playpause('.icon-play ', 'icon-pause');
     $('.musiclist span').addClass('Num');
     $('.musiclist div').addClass('SongN');
-    </script>
-    <script>
-        alert(window.mqq)
     </script>
 </body>
 </html>
