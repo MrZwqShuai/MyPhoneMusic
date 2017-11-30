@@ -194,10 +194,13 @@
       }
     }
     if (window.mqq) {
+        
        alert(window.mqq)
       doQQShare();
     } else {
+      alert(222)
       require([qqapi], function() {
+          alert(333)
         doQQShare();
       });
     }
