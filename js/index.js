@@ -1,25 +1,5 @@
 
-setShareInfo({
-    title: '刘德华',
-    summary: '222',
-    pic: 'http://qzonestyle.gtimg.cn/aoi/sola/20150617094556_OvfOpoRKRB.png',
-    url:            'https://mrzwqshuai.github.io/MyPhoneMusic/?tjrid=123456',
-        WXconfig:       {
-            swapTitleInWX: true,
-            appId: '',
-            timestamp:'',
-            nonceStr: '',
-            signature: ''
-        },
-    callback: function (result) {
 
-    alert('result成功分享')
-    alert(result.retCode)
-    document.write(result.retCode)
-    } 
-});
-alert(919)
-console.log('setShareInfo222', setShareInfo)
 var AudioFace = {}
 AudioFace.music = {}
 AudioFace.music.AudioM = function(Songname, URL, element, element1, element2) {
