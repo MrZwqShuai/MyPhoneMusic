@@ -174,6 +174,9 @@
             }
             info.share_type = type;
             info.back = true;
+              alert(info)
+              info.title = "测试";
+              info.summary = "测试"
             window.mqq.ui.shareMessage(info, function(result) {
               if (result.retCode === 0) {
                 data.callback && data.callback.call(this, result);
@@ -181,12 +184,14 @@
             });
           });
         } else {
+            alert(info)
           window.mqq.data.setShareInfo(info);
         }
       } catch (e) {
       }
     }
     if (window.mqq) {
+       alert(window.mqq)
       doQQShare();
     } else {
       require([qqapi], function() {
