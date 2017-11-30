@@ -188,10 +188,13 @@
       }
     }
     if (window.mqq) {
+        alert(123)
+        alert(window.mqq)
       doQQShare();
     } else {
       require([qqapi], function() {
-          alert(window.mqq)
+          alert(222)
+        alert(window.mqq)
           
         doQQShare();
       });
