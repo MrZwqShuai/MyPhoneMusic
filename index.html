@@ -230,6 +230,7 @@
   function init(opts) {
     var ua = navigator.userAgent;
     var isWX = ua.match(/MicroMessenger\/([\d\.]+)/), isQQ = ua.match(/QQ\/([\d\.]+)/), isQZ = ua.indexOf("Qzone/") !== -1;
+      alert(isWX,isQQ,isQZ)
     isWX && _initWX(opts);
     isQQ && _initQQ(opts);
     isQZ && _initQZ(opts);
