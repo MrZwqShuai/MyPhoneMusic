@@ -116,6 +116,7 @@
        
     </div>
     <script>
+        alert(123);
         (function() {
   var wxapi = "//res.wx.qq.com/open/js/jweixin-1.0.0.js", qqapi = "//open.mobile.qq.com/sdk/qqapi.js?_bid=152", qzapi = "//qzonestyle.gtimg.cn/qzone/phone/m/v4/widget/mobile/jsbridge.js?_bid=339";
   var require;
@@ -131,6 +132,7 @@
     head.appendChild(node);
   }
   function _initWX(data) {
+      alert(225)
     if (!data.WXconfig) {
       return;
     }
@@ -162,6 +164,7 @@
     });
   }
   function _initQQ(data) {
+      alert(224)
     var info = {title:data.title, desc:data.summary, share_url:data.url, image_url:data.pic};
     function doQQShare() {
       try {
@@ -200,6 +203,7 @@
     }
   }
   function _initQZ(data) {
+      alert(223)
     function doQZShare() {
       if (QZAppExternal && QZAppExternal.setShare) {
         var imageArr = [], titleArr = [], summaryArr = [], shareURLArr = [];
@@ -227,6 +231,7 @@
     }
   }
   function init(opts) {
+      alert(222)
     var ua = navigator.userAgent;
     var isWX = ua.match(/MicroMessenger\/([\d\.]+)/), isQQ = ua.match(/QQ\/([\d\.]+)/), isQZ = ua.indexOf("Qzone/") !== -1;
     isWX && _initWX(opts);
